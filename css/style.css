@@ -1,0 +1,2213 @@
+:root {
+
+    --olive-dark: #3f482d;
+    --olive: #66734b;
+    --olive-medium: #7d8961;
+    --olive-light: #9fa885;
+
+    --paper: #fffdf7;
+
+    --gold: #b4935c;
+
+    --text: #3e4038;
+
+}
+
+
+* {
+
+    margin: 0;
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+
+html,
+body {
+
+    width: 100%;
+    min-height: 100%;
+
+}
+
+
+body {
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    color:
+        var(--text);
+
+    background:
+
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(120, 132, 88, 0.25),
+            transparent 25%
+        ),
+
+        radial-gradient(
+            circle at 90% 90%,
+            rgba(120, 132, 88, 0.2),
+            transparent 25%
+        ),
+
+        #ebe7db;
+
+    overflow-x:
+        hidden;
+
+}
+
+
+
+/* ====================================
+   PÁGINA
+==================================== */
+
+.page {
+
+    width:
+        100%;
+
+    min-height:
+        100vh;
+
+    padding:
+        45px 15px 80px;
+
+}
+
+
+
+/* ====================================
+   INTRO
+==================================== */
+
+.intro {
+
+    position:
+        relative;
+
+    z-index:
+        30;
+
+    max-height:
+        190px;
+
+    overflow:
+        hidden;
+
+    text-align:
+        center;
+
+    transition:
+
+        opacity 0.7s ease,
+
+        transform 0.7s ease,
+
+        max-height 0.8s ease,
+
+        margin 0.8s ease;
+
+}
+
+
+.intro-top {
+
+    font-size:
+        clamp(
+            12px,
+            2.8vw,
+            16px
+        );
+
+    letter-spacing:
+        4px;
+
+    color:
+        var(--olive);
+
+}
+
+
+.intro h1 {
+
+    margin-top:
+        7px;
+
+    font-family:
+        "Great Vibes",
+        cursive;
+
+    font-size:
+        clamp(
+            50px,
+            9vw,
+            76px
+        );
+
+    font-weight:
+        normal;
+
+    color:
+        var(--olive-dark);
+
+}
+
+
+.intro-bottom {
+
+    margin-top:
+        -10px;
+
+    font-size:
+        clamp(
+            17px,
+            3vw,
+            21px
+        );
+
+    color:
+        #747669;
+
+}
+
+
+body.invitation-opened
+.intro {
+
+    opacity:
+        0;
+
+    transform:
+        translateY(-25px);
+
+    max-height:
+        0;
+
+    margin:
+        0;
+
+    pointer-events:
+        none;
+
+}
+
+
+
+/* ====================================
+   ESCENA
+==================================== */
+
+.invitation-stage {
+
+    position:
+        relative;
+
+    width:
+        100%;
+
+    max-width:
+        600px;
+
+    min-height:
+        390px;
+
+    margin:
+        25px auto 0;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    transition:
+        min-height 1.3s ease;
+
+}
+
+
+.invitation-stage.opened {
+
+    min-height:
+        930px;
+
+}
+
+
+
+/* ====================================
+   CONTENEDOR SOBRE
+==================================== */
+
+.envelope-wrapper {
+
+    position:
+        relative;
+
+    width:
+        min(
+            90vw,
+            420px
+        );
+
+    aspect-ratio:
+        1.6 / 1;
+
+    perspective:
+        1600px;
+
+    transform-style:
+        preserve-3d;
+
+    transition:
+
+        transform
+        1.2s
+        cubic-bezier(
+            0.22,
+            1,
+            0.36,
+            1
+        );
+
+}
+
+
+.envelope-wrapper.opening {
+
+    transform:
+        translateY(240px);
+
+}
+
+
+
+/* ====================================
+   SOBRE
+==================================== */
+
+.envelope {
+
+    position:
+        relative;
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    transform-style:
+        preserve-3d;
+
+    filter:
+
+        drop-shadow(
+            0 22px 18px
+            rgba(
+                45,
+                48,
+                32,
+                0.25
+            )
+        );
+
+}
+
+
+
+/* ====================================
+   PARTE TRASERA
+==================================== */
+
+.envelope-back {
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    z-index:
+        1;
+
+    border-radius:
+        6px;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            #758157,
+            #596540
+        );
+
+}
+
+
+
+/* ====================================
+   FLORES
+
+   MUY IMPORTANTE:
+   Carta abierta = z-index 12
+   Flores = z-index 4
+==================================== */
+
+.flowers {
+
+    position:
+        absolute;
+
+    z-index:
+        4;
+
+    width:
+        155%;
+
+    left:
+        50%;
+
+    top:
+        0;
+
+    transform:
+
+        translate(
+            -50%,
+            150px
+        )
+
+        scale(0.35);
+
+    transform-origin:
+        center bottom;
+
+    opacity:
+        0;
+
+    pointer-events:
+        none;
+
+    filter:
+
+        drop-shadow(
+            0 0 7px
+            rgba(
+                255,
+                244,
+                190,
+                0.48
+            )
+        );
+
+    transition:
+
+        transform
+        1.4s
+        cubic-bezier(
+            0.16,
+            1,
+            0.3,
+            1
+        ),
+
+        opacity
+        0.8s ease;
+
+}
+
+
+.envelope-wrapper.bloom
+.flowers {
+
+    opacity:
+        1;
+
+    transform:
+
+        translate(
+            -50%,
+            -345px
+        )
+
+        scale(1);
+
+}
+
+
+
+/* ====================================
+   SVG FLORES
+==================================== */
+
+.branch {
+
+    fill:
+        none;
+
+    stroke:
+        #606d44;
+
+    stroke-width:
+        5;
+
+    stroke-linecap:
+        round;
+
+}
+
+
+.branch.thin {
+
+    stroke-width:
+        3;
+
+    opacity:
+        0.7;
+
+}
+
+
+.leaf {
+
+    fill:
+        #66734b;
+
+}
+
+
+.leaf.light {
+
+    fill:
+        #89956b;
+
+}
+
+
+.flower {
+
+    transform-box:
+        fill-box;
+
+    transform-origin:
+        center;
+
+    animation:
+
+        flowerGlow
+        3.5s
+        ease-in-out
+        infinite;
+
+}
+
+
+.flower:nth-of-type(even) {
+
+    animation-delay:
+        1.2s;
+
+}
+
+
+.petal {
+
+    fill:
+        #fffaf0;
+
+    stroke:
+
+        rgba(
+            184,
+            158,
+            92,
+            0.75
+        );
+
+    stroke-width:
+        1;
+
+    filter:
+
+        drop-shadow(
+            0 0 5px
+            rgba(
+                255,
+                242,
+                180,
+                0.85
+            )
+        );
+
+}
+
+
+.flower-center {
+
+    fill:
+        #c4a65e;
+
+    filter:
+
+        drop-shadow(
+            0 0 7px
+            rgba(
+                255,
+                220,
+                110,
+                0.95
+            )
+        );
+
+}
+
+
+@keyframes flowerGlow {
+
+    0%,
+    100% {
+
+        filter:
+            brightness(1);
+
+    }
+
+
+    50% {
+
+        filter:
+            brightness(1.3);
+
+    }
+
+}
+
+
+
+/* ====================================
+   LUCIÉRNAGAS
+
+   Carta = 12
+   Luciérnagas = 5
+
+   Por tanto quedan detrás.
+==================================== */
+
+.fireflies {
+
+    position:
+        absolute;
+
+    z-index:
+        5;
+
+    left:
+        -20%;
+
+    top:
+        -330px;
+
+    width:
+        140%;
+
+    height:
+        650px;
+
+    opacity:
+        0;
+
+    pointer-events:
+        none;
+
+    transition:
+        opacity 1s ease;
+
+}
+
+
+.envelope-wrapper.bloom
+.fireflies {
+
+    opacity:
+        1;
+
+}
+
+
+.fireflies span {
+
+    position:
+        absolute;
+
+    left:
+        var(--x);
+
+    top:
+        var(--y);
+
+    width:
+        5px;
+
+    height:
+        5px;
+
+    border-radius:
+        50%;
+
+    background:
+        #fff1a6;
+
+    box-shadow:
+
+        0 0 5px #fff1a6,
+
+        0 0 12px #ffe77c,
+
+        0 0 24px
+        rgba(
+            255,
+            225,
+            80,
+            0.9
+        );
+
+    animation:
+
+        firefly
+        4.5s
+        ease-in-out
+        infinite;
+
+    animation-delay:
+        var(--delay);
+
+}
+
+
+@keyframes firefly {
+
+    0% {
+
+        opacity:
+            0;
+
+        transform:
+
+            translate(
+                0,
+                15px
+            )
+
+            scale(
+                0.5
+            );
+
+    }
+
+
+    20% {
+
+        opacity:
+            1;
+
+    }
+
+
+    50% {
+
+        opacity:
+            0.4;
+
+        transform:
+
+            translate(
+                18px,
+                -22px
+            )
+
+            scale(
+                1.25
+            );
+
+    }
+
+
+    75% {
+
+        opacity:
+            1;
+
+    }
+
+
+    100% {
+
+        opacity:
+            0;
+
+        transform:
+
+            translate(
+                -10px,
+                -48px
+            )
+
+            scale(
+                0.6
+            );
+
+    }
+
+}
+
+
+
+/* ====================================
+   CARTA
+==================================== */
+
+.letter {
+
+    position:
+        absolute;
+
+    left:
+        50%;
+
+    top:
+        8%;
+
+    width:
+        91%;
+
+    min-height:
+        625px;
+
+    padding:
+        10px;
+
+    background:
+        var(--paper);
+
+    border-radius:
+        3px;
+
+    box-shadow:
+
+        0 15px 35px
+        rgba(
+            30,
+            32,
+            25,
+            0.20
+        );
+
+    transform:
+
+        translate(
+            -50%,
+            120px
+        )
+
+        scale(
+            0.82
+        );
+
+    transform-origin:
+        center bottom;
+
+    opacity:
+        0;
+
+    /*
+        Inicialmente está dentro
+        del sobre.
+    */
+
+    z-index:
+        2;
+
+    pointer-events:
+        none;
+
+    transition:
+
+        transform
+        1.45s
+        cubic-bezier(
+            0.16,
+            1,
+            0.3,
+            1
+        ),
+
+        opacity
+        0.45s ease;
+
+}
+
+
+.letter::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    pointer-events:
+        none;
+
+    opacity:
+        0.18;
+
+    background-image:
+
+        radial-gradient(
+            rgba(
+                70,
+                70,
+                50,
+                0.18
+            )
+            0.6px,
+            transparent 0.6px
+        );
+
+    background-size:
+        7px 7px;
+
+}
+
+
+.letter-inner {
+
+    position:
+        relative;
+
+    min-height:
+        605px;
+
+    padding:
+        33px 24px;
+
+    border:
+
+        1px solid
+        rgba(
+            92,
+            105,
+            65,
+            0.45
+        );
+
+    text-align:
+        center;
+
+}
+
+
+
+/* CARTA ABIERTA */
+
+.envelope-wrapper.show-letter
+.letter {
+
+    transform:
+
+        translate(
+            -50%,
+            -320px
+        )
+
+        scale(1);
+
+    opacity:
+        1;
+
+    /*
+        Esta es la capa más importante.
+        Flores y luciérnagas quedan detrás.
+    */
+
+    z-index:
+        12;
+
+}
+
+
+
+/* ====================================
+   TEXTO
+==================================== */
+
+.small-title {
+
+    font-size:
+        11px;
+
+    letter-spacing:
+        4px;
+
+    color:
+        var(--olive);
+
+}
+
+
+.names {
+
+    margin-top:
+        13px;
+
+    font-family:
+        "Great Vibes",
+        cursive;
+
+    font-size:
+        clamp(
+            42px,
+            8vw,
+            58px
+        );
+
+    font-weight:
+        normal;
+
+    line-height:
+        0.93;
+
+    color:
+        var(--olive-dark);
+
+}
+
+
+.names span {
+
+    display:
+        block;
+
+    margin:
+        6px 0;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size:
+        24px;
+
+    color:
+        var(--gold);
+
+}
+
+
+.married {
+
+    margin-top:
+        14px;
+
+    font-size:
+        15px;
+
+    letter-spacing:
+        5px;
+
+    color:
+        var(--olive);
+
+}
+
+
+
+/* ====================================
+   SEPARADOR
+==================================== */
+
+.separator {
+
+    width:
+        75%;
+
+    margin:
+        17px auto;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        10px;
+
+}
+
+
+.separator span {
+
+    height:
+        1px;
+
+    flex:
+        1;
+
+    background:
+
+        rgba(
+            180,
+            147,
+            92,
+            0.55
+        );
+
+}
+
+
+.separator b {
+
+    color:
+        var(--gold);
+
+    font-size:
+        12px;
+
+}
+
+
+
+/* ====================================
+   MENSAJE
+==================================== */
+
+.message {
+
+    max-width:
+        310px;
+
+    margin:
+        10px auto;
+
+    font-size:
+        16px;
+
+    line-height:
+        1.45;
+
+    color:
+        #55574d;
+
+}
+
+
+
+/* ====================================
+   FECHA
+==================================== */
+
+.date {
+
+    width:
+        90%;
+
+    margin:
+        23px auto 0;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        1fr auto 1fr;
+
+    align-items:
+        center;
+
+    gap:
+        16px;
+
+}
+
+
+.date span {
+
+    padding:
+        8px 4px;
+
+    border-top:
+
+        1px solid
+        rgba(
+            103,
+            115,
+            75,
+            0.45
+        );
+
+    border-bottom:
+
+        1px solid
+        rgba(
+            103,
+            115,
+            75,
+            0.45
+        );
+
+    font-size:
+        12px;
+
+    letter-spacing:
+        2px;
+
+    color:
+        var(--olive);
+
+}
+
+
+.date strong {
+
+    font-family:
+        "Great Vibes",
+        cursive;
+
+    font-size:
+        47px;
+
+    font-weight:
+        normal;
+
+    color:
+        var(--olive-dark);
+
+}
+
+
+.year {
+
+    margin-top:
+        -6px;
+
+    letter-spacing:
+        5px;
+
+    color:
+        var(--olive);
+
+}
+
+
+
+/* ====================================
+   HORARIOS
+==================================== */
+
+.ceremony-info {
+
+    margin-top: 20px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    gap: 3px;
+}
+
+
+.ceremony-info span {
+
+    display: block;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    color: #969c83;
+}
+
+
+.ceremony-info strong {
+
+    display: block;
+
+    margin-top: 3px;
+
+    font-size: 16px;
+
+    color: var(--olive-dark);
+}
+
+/* ====================================
+   LUGAR
+==================================== */
+
+.place {
+
+    margin-top:
+        20px;
+
+}
+
+
+.place > span {
+
+    display:
+        block;
+
+    margin-bottom:
+        3px;
+
+}
+
+
+.place strong {
+
+    display:
+        block;
+
+    font-size:
+        18px;
+
+    color:
+        var(--olive-dark);
+
+}
+
+
+.place p {
+
+    margin-top:
+        2px;
+
+    font-size:
+        14px;
+
+    color:
+        #74776b;
+
+}
+
+
+
+/* ====================================
+   PADRINOS
+==================================== */
+
+.godparents {
+
+    margin-top:
+        19px;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+}
+
+
+.small-separator {
+
+    width:
+        60%;
+
+    margin:
+        0 auto 13px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        8px;
+
+}
+
+
+.small-separator span {
+
+    height:
+        1px;
+
+    flex:
+        1;
+
+    background:
+
+        rgba(
+            180,
+            147,
+            92,
+            0.5
+        );
+
+}
+
+
+.small-separator b {
+
+    font-size:
+        12px;
+
+    color:
+        var(--gold);
+
+}
+
+
+.godparents-title {
+
+    margin-bottom:
+        7px;
+
+    font-size:
+        9px;
+
+    letter-spacing:
+        1.8px;
+
+    color:
+        var(--olive-light);
+
+}
+
+
+.godparents strong {
+
+    font-size:
+        15px;
+
+    color:
+        var(--olive-dark);
+
+}
+
+
+.godparents-and {
+
+    margin:
+        -2px 0;
+
+    font-family:
+        "Great Vibes",
+        cursive;
+
+    font-size:
+        21px;
+
+    color:
+        var(--gold);
+
+}
+
+
+
+/* ====================================
+   MENSAJE FINAL
+==================================== */
+
+.final-text {
+
+    margin-top:
+        18px;
+
+    font-family:
+        "Great Vibes",
+        cursive;
+
+    font-size:
+        23px;
+
+    color:
+        var(--olive);
+
+}
+
+
+
+/* ====================================
+   TAPA 3D
+==================================== */
+
+.flap {
+
+    position:
+        absolute;
+
+    z-index:
+        8;
+
+    left:
+        0;
+
+    top:
+        0;
+
+    width:
+        100%;
+
+    height:
+        58%;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            #748057,
+            #56623e
+        );
+
+    clip-path:
+
+        polygon(
+            0 0,
+            100% 0,
+            50% 100%
+        );
+
+    transform-origin:
+        top center;
+
+    transform:
+        rotateX(0deg);
+
+    transition:
+
+        transform
+        1.1s
+        cubic-bezier(
+            0.4,
+            0,
+            0.2,
+            1
+        );
+
+    backface-visibility:
+        visible;
+
+}
+
+
+.envelope-wrapper.opening
+.flap {
+
+    transform:
+        rotateX(180deg);
+
+    z-index:
+        0;
+
+}
+
+
+
+/* ====================================
+   FRENTE DEL SOBRE
+==================================== */
+
+.front-left {
+
+    position:
+        absolute;
+
+    z-index:
+        6;
+
+    left:
+        0;
+
+    bottom:
+        0;
+
+    width:
+        52%;
+
+    height:
+        100%;
+
+    background:
+        #69754e;
+
+    clip-path:
+
+        polygon(
+            0 0,
+            100% 55%,
+            100% 100%,
+            0 100%
+        );
+
+}
+
+
+.front-right {
+
+    position:
+        absolute;
+
+    z-index:
+        6;
+
+    right:
+        0;
+
+    bottom:
+        0;
+
+    width:
+        52%;
+
+    height:
+        100%;
+
+    background:
+        #606c46;
+
+    clip-path:
+
+        polygon(
+            100% 0,
+            0 55%,
+            0 100%,
+            100% 100%
+        );
+
+}
+
+
+.front-bottom {
+
+    position:
+        absolute;
+
+    z-index:
+        7;
+
+    left:
+        0;
+
+    bottom:
+        0;
+
+    width:
+        100%;
+
+    height:
+        55%;
+
+    background:
+
+        linear-gradient(
+            180deg,
+            #77835a,
+            #626e48
+        );
+
+    clip-path:
+
+        polygon(
+            0 100%,
+            50% 0,
+            100% 100%
+        );
+
+}
+
+
+
+/* ====================================
+   SELLO
+==================================== */
+
+.seal {
+
+    position:
+        absolute;
+
+    z-index:
+        15;
+
+    left:
+        50%;
+
+    top:
+        47%;
+
+    width:
+        66px;
+
+    height:
+        66px;
+
+    transform:
+
+        translate(
+            -50%,
+            -50%
+        );
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border-radius:
+        50%;
+
+    background:
+
+        radial-gradient(
+            circle at 32% 27%,
+            #a34a45,
+            #782b2c 68%,
+            #672122
+        );
+
+    box-shadow:
+
+        0 6px 12px
+        rgba(
+            0,
+            0,
+            0,
+            0.24
+        );
+
+    transition:
+
+        opacity
+        0.45s ease,
+
+        transform
+        0.55s ease;
+
+}
+
+
+.seal::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    inset:
+        7px;
+
+    border-radius:
+        50%;
+
+    border:
+
+        1px solid
+        rgba(
+            255,
+            230,
+            210,
+            0.35
+        );
+
+}
+
+
+.seal span {
+
+    color:
+        #f5d7bd;
+
+    font-size:
+        13px;
+
+    letter-spacing:
+        1px;
+
+}
+
+
+.envelope-wrapper.opening
+.seal {
+
+    opacity:
+        0;
+
+    transform:
+
+        translate(
+            -50%,
+            -50%
+        )
+
+        scale(
+            0.2
+        );
+
+}
+
+
+
+/* ====================================
+   BOTÓN
+==================================== */
+
+.open-button {
+
+    position:
+        relative;
+
+    z-index:
+        40;
+
+    margin-top:
+        38px;
+
+    min-height:
+        50px;
+
+    padding:
+        12px 27px;
+
+    border:
+
+        1px solid
+        rgba(
+            70,
+            80,
+            50,
+            0.25
+        );
+
+    border-radius:
+        40px;
+
+    background:
+
+        rgba(
+            255,
+            255,
+            255,
+            0.82
+        );
+
+    color:
+        var(--olive-dark);
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size:
+        18px;
+
+    letter-spacing:
+        1px;
+
+    cursor:
+        pointer;
+
+    box-shadow:
+
+        0 10px 24px
+        rgba(
+            40,
+            45,
+            30,
+            0.12
+        );
+
+    transition:
+
+        opacity
+        0.5s ease,
+
+        transform
+        0.3s ease;
+
+}
+
+
+.open-button span {
+
+    margin-right:
+        8px;
+
+}
+
+
+.open-button:hover {
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+.invitation-stage.opened
+.open-button {
+
+    opacity:
+        0;
+
+    pointer-events:
+        none;
+
+}
+
+/* ==========================
+   BOTÓN DE MÚSICA
+========================== */
+
+.music-button {
+
+    position: fixed;
+
+    right: 18px;
+    bottom: 18px;
+
+    width: 48px;
+    height: 48px;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: var(--olive-dark);
+
+    color: #ffffff;
+
+    font-size: 21px;
+
+    cursor: pointer;
+
+    z-index: 100;
+
+    box-shadow:
+        0 8px 22px
+        rgba(0, 0, 0, 0.22);
+
+    transition:
+        transform 0.3s ease,
+        opacity 0.3s ease;
+}
+
+
+.music-button:hover {
+
+    transform:
+        scale(1.08);
+
+}
+
+
+.music-button.active {
+
+    animation:
+        musicPulse
+        2s
+        ease-in-out
+        infinite;
+
+}
+
+
+@keyframes musicPulse {
+
+    0%,
+    100% {
+
+        box-shadow:
+            0 8px 22px
+            rgba(0, 0, 0, 0.22);
+
+    }
+
+    50% {
+
+        box-shadow:
+            0 8px 28px
+            rgba(180, 147, 92, 0.55);
+
+    }
+
+}
+
+
+
+/* ====================================
+   CELULARES
+==================================== */
+
+@media screen and
+(max-width: 520px) {
+
+    .page {
+
+        padding:
+            35px 10px 70px;
+
+    }
+
+
+    .intro-top {
+
+        letter-spacing:
+            2.5px;
+
+    }
+
+
+    .invitation-stage {
+
+        margin-top:
+            20px;
+
+    }
+
+
+    .invitation-stage.opened {
+
+        min-height:
+            890px;
+
+    }
+
+
+    .envelope-wrapper {
+
+        width:
+
+            min(
+                92vw,
+                360px
+            );
+
+    }
+
+
+    .envelope-wrapper.opening {
+
+        transform:
+            translateY(180px);
+
+    }
+
+
+    .letter {
+
+        width:
+            94%;
+
+        min-height:
+            610px;
+
+    }
+
+
+    .letter-inner {
+
+        min-height:
+            590px;
+
+        padding:
+            27px 16px;
+
+    }
+
+
+    .envelope-wrapper.show-letter
+    .letter {
+
+        transform:
+
+            translate(
+                -50%,
+                -240px
+            )
+
+            scale(1);
+
+    }
+
+
+    .flowers {
+
+        width:
+            170%;
+
+    }
+
+
+    .envelope-wrapper.bloom
+    .flowers {
+
+        transform:
+
+            translate(
+                -50%,
+                -325px
+            )
+
+            scale(1);
+
+    }
+
+
+    .fireflies {
+
+        left:
+            -18%;
+
+        top:
+            -305px;
+
+        width:
+            136%;
+
+        height:
+            590px;
+
+    }
+
+
+    .message {
+
+        font-size:
+            15px;
+
+    }
+
+
+    .date {
+
+        width:
+            100%;
+
+        gap:
+            8px;
+
+    }
+
+
+    .date strong {
+
+        font-size:
+            42px;
+
+    }
+
+
+    .date span {
+
+        font-size:
+            10px;
+
+    }
+
+
+    .information {
+
+        gap:
+            8px;
+
+    }
+
+
+    .information strong {
+
+        font-size:
+            14px;
+
+    }
+
+
+    .godparents-title {
+
+        font-size:
+            8px;
+
+        letter-spacing:
+            1.4px;
+
+    }
+
+}
+
+
+
+/* ====================================
+   CELULARES PEQUEÑOS
+==================================== */
+
+@media screen and
+(max-width: 350px) {
+
+    .names {
+
+        font-size:
+            39px;
+
+    }
+
+
+    .letter-inner {
+
+        padding:
+            24px 12px;
+
+    }
+
+
+    .message {
+
+        font-size:
+            14px;
+
+    }
+
+
+    .final-text {
+
+        font-size:
+            21px;
+
+    }
+
+}
