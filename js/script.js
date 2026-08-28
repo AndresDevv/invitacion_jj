@@ -1,38 +1,73 @@
 const openButton =
-    document.getElementById(
-        "openButton"
-    );
-
+    document.getElementById("openButton");
 
 const envelopeWrapper =
-    document.getElementById(
-        "envelopeWrapper"
-    );
-
+    document.getElementById("envelopeWrapper");
 
 const invitationStage =
-    document.getElementById(
-        "invitationStage"
-    );
-
+    document.getElementById("invitationStage");
 
 const music =
-    document.getElementById(
-        "backgroundMusic"
-    );
-
+    document.getElementById("backgroundMusic");
 
 const musicButton =
-    document.getElementById(
-        "musicButton"
-    );
+    document.getElementById("musicButton");
 
 
 let opened = false;
-
 let musicPlaying = false;
 
 
+/* ==========================
+   INICIAR MÚSICA
+========================== */
+
+async function startMusic() {
+
+    try {
+
+        music.volume = 0.8;
+
+        await music.play();
+
+        musicPlaying = true;
+
+        musicButton.style.display = "flex";
+
+        musicButton.classList.add("active");
+
+        musicButton.textContent = "♫";
+
+    } catch (error) {
+
+        console.log(
+            "El navegador bloqueó el audio:",
+            error
+        );
+
+        /*
+            Si el celular bloquea
+            la reproducción, mostramos
+            el botón para que el usuario
+            pueda iniciarla manualmente.
+        */
+
+        musicPlaying = false;
+
+        musicButton.style.display = "flex";
+
+        musicButton.classList.remove("active");
+
+        musicButton.textContent = "▶";
+
+    }
+
+}
+
+
+/* ==========================
+   ABRIR INVITACIÓN
+========================== */
 
 function openInvitation() {
 
@@ -45,7 +80,19 @@ function openInvitation() {
 
 
     /*
-        Ocultar texto superior
+        IMPORTANTE:
+        Intentamos reproducir la música
+        inmediatamente dentro del clic.
+
+        Esto mejora la compatibilidad
+        con Safari/iPhone y Android.
+    */
+
+    startMusic();
+
+
+    /*
+        Oculta el texto inicial.
     */
 
     document.body.classList.add(
@@ -54,7 +101,8 @@ function openInvitation() {
 
 
     /*
-        Dar espacio a la carta
+        Da espacio para mostrar
+        toda la carta.
     */
 
     invitationStage.classList.add(
@@ -63,7 +111,7 @@ function openInvitation() {
 
 
     /*
-        Abrir sobre
+        Abre el sobre en 3D.
     */
 
     envelopeWrapper.classList.add(
@@ -72,46 +120,7 @@ function openInvitation() {
 
 
     /*
-        Iniciar música
-    */
-
-    music.play()
-        .then(() => {
-
-            musicPlaying = true;
-
-            musicButton.style.display =
-                "flex";
-
-            musicButton.classList.add(
-                "active"
-            );
-
-            musicButton.textContent =
-                "♫";
-
-        })
-        .catch(() => {
-
-            /*
-                Si algún navegador bloquea
-                el audio, mostramos igual
-                el botón para activarlo.
-            */
-
-            musicPlaying = false;
-
-            musicButton.style.display =
-                "flex";
-
-            musicButton.textContent =
-                "♪";
-
-        });
-
-
-    /*
-        Flores y luciérnagas
+        Flores + luciérnagas.
     */
 
     setTimeout(() => {
@@ -124,7 +133,7 @@ function openInvitation() {
 
 
     /*
-        Carta
+        La carta sale del sobre.
     */
 
     setTimeout(() => {
@@ -138,6 +147,9 @@ function openInvitation() {
 }
 
 
+/* ==========================
+   BOTÓN ABRIR
+========================== */
 
 openButton.addEventListener(
     "click",
@@ -145,14 +157,18 @@ openButton.addEventListener(
 );
 
 
-
-/*
-    PAUSAR / REPRODUCIR
-*/
+/* ==========================
+   BOTÓN DE MÚSICA
+========================== */
 
 musicButton.addEventListener(
     "click",
-    () => {
+    async () => {
+
+        /*
+            Si está sonando,
+            la pausamos.
+        */
 
         if (musicPlaying) {
 
@@ -160,27 +176,113 @@ musicButton.addEventListener(
 
             musicPlaying = false;
 
-            musicButton.textContent =
-                "♪";
-
             musicButton.classList.remove(
                 "active"
             );
 
-        } else {
+            musicButton.textContent = "▶";
 
-            music.play();
+            return;
+        }
+
+
+        /*
+            Si está pausada,
+            intentamos reproducirla.
+        */
+
+        try {
+
+            await music.play();
 
             musicPlaying = true;
-
-            musicButton.textContent =
-                "♫";
 
             musicButton.classList.add(
                 "active"
             );
 
+            musicButton.textContent = "♫";
+
+        } catch (error) {
+
+            console.log(
+                "No se pudo reproducir la música:",
+                error
+            );
+
+            musicPlaying = false;
+
+            musicButton.textContent = "▶";
+
         }
+
+    }
+);
+
+
+/* ==========================
+   ESTADO DEL AUDIO
+========================== */
+
+/*
+    Si la música termina o se pausa
+    por alguna razón, actualizamos
+    el botón.
+*/
+
+music.addEventListener(
+    "pause",
+    () => {
+
+        musicPlaying = false;
+
+        musicButton.classList.remove(
+            "active"
+        );
+
+        musicButton.textContent = "▶";
+
+    }
+);
+
+
+music.addEventListener(
+    "play",
+    () => {
+
+        musicPlaying = true;
+
+        musicButton.classList.add(
+            "active"
+        );
+
+        musicButton.textContent = "♫";
+
+    }
+);
+
+
+/* ==========================
+   MANEJO DE ERRORES
+========================== */
+
+music.addEventListener(
+    "error",
+    () => {
+
+        console.log(
+            "Hubo un problema cargando el archivo de música."
+        );
+
+        musicPlaying = false;
+
+        musicButton.style.display = "flex";
+
+        musicButton.classList.remove(
+            "active"
+        );
+
+        musicButton.textContent = "▶";
 
     }
 );
