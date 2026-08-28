@@ -1,2 +1,0 @@
-# Boda
-invitacion responsiva
